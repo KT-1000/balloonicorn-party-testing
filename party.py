@@ -9,13 +9,57 @@ app.secret_key = "SECRETSECRETSECRET"
 
 
 def is_mel(name, email):
-    """Is this user Mel?"""
+    """Is this user Mel?
+
+        >>> is_mel('Mel Melitpolski', 'fake@fake.com')
+        True
+        >>> is_mel('Definitely Not Mel', 'mel@ubermelon.com')
+        True
+        >>> is_mel('Mel Melitpolski', 'mel@ubermelon.com')
+        True
+        >>> is_mel('Judith Butler', 'judith@awesome.com')
+        False
+    """
 
     return name == "Mel Melitpolski" or email == "mel@ubermelon.com"
 
 
 def most_and_least_common_type(treats):
-    """Given list of treats, return {most, least} common types."""
+    """Given list of treats, return {most, least} common types.
+
+        >>> treats = [
+        ... {'type':'dessert'},
+        ... {'type':'appetizer'},
+        ... {'type':'drink'},
+        ... {'type':'dessert'},
+        ... {'type':'dessert'},
+        ... {'type':'drink'},
+        ... ]
+        >>> most_and_least_common_type(treats)
+        ('dessert', 'appetizer')
+
+        There's only one type of food, so it is both the most and least:
+        >>> treats2 = [
+        ... {'type':'dessert'},]
+        >>> most_and_least_common_type(treats2)
+        ('dessert', 'dessert')
+
+        There's a tie for most:
+        >>> treats3 = [
+        ... {'type':'drink'},
+        ... {'type':'drink'},
+        ... {'type':'dessert'},
+        ... {'type':'dessert'},
+        ... {'type':'appetizer'},
+        ... ]
+        >>> most_and_least_common_type(treats3)
+        ('dessert', 'appetizer')
+
+        The treats list is empty:
+        >>> treats4 = []
+        >>> most_and_least_common_type(treats4)
+        (None, None)
+    """
 
     types = {}
 
